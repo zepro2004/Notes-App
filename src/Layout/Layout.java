@@ -131,8 +131,7 @@ public class Layout {
         } else {
             JOptionPane.showMessageDialog(null, "Please fill in both fields.");
         }
-      });
-
+        });
       addTaskButton.addActionListener(e -> {
         String taskDescription = taskDescriptionField.getText();
         String endDate = taskEndDateField.getText();
