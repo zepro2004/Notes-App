@@ -14,27 +14,68 @@ public class ToDoManager {
 
     public ToDoManager() {
         toDoList = new ArrayList<>();
+        refreshTasks();
     }
 
-    public void addTask(String taskDescription, String endDate) {
-        ToDo newTask = new ToDo(taskDescription, endDate);
+    public void addTask(String taskDescription, String endDate, boolean isCompleted) {
+        ToDo newTask = new ToDo(taskDescription, endDate, isCompleted);
         toDoList.add(newTask);
+        saveTaskToDatabase(newTask);
     }
 
     public void removeTask(ToDo task) {
         toDoList.remove(task);
-    }
-
-    public List<ToDo> getTasks() {
-      loadTasksFromDatabase();
-      return toDoList;
+        deleteTaskFromDatabase(task);
     }
 
     public void markTaskAsCompleted(ToDo task) {
         task.markAsCompleted();
+        updateTaskInDatabase(task);
     }
 
-    public void loadTasksFromDatabase() {
+    public List<ToDo> getTasks() {
+        return toDoList;
+    }
+
+    public void saveTaskToDatabase(ToDo task) {
+        String sql = "INSERT INTO todos (description, end_date, completed) VALUES (?, ?, ?)";
+        try (Connection conn = DBHelper.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, task.getTaskDescription());
+            stmt.setString(2, task.getEndDate());
+            stmt.setBoolean(3, task.isCompleted());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error saving task: " + e.getMessage());
+        }
+    }
+
+    public void updateTaskInDatabase(ToDo task) {
+        String sql = "UPDATE todos SET completed = ? WHERE description = ? AND end_date = ?";
+        try (Connection conn = DBHelper.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setBoolean(1, task.isCompleted());
+            stmt.setString(2, task.getTaskDescription());
+            stmt.setString(3, task.getEndDate());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error updating task: " + e.getMessage());
+        }
+    }
+
+    public void deleteTaskFromDatabase(ToDo task) {
+        String sql = "DELETE FROM todos WHERE description = ? AND end_date = ?";
+        try (Connection conn = DBHelper.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, task.getTaskDescription());
+            stmt.setString(2, task.getEndDate());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error deleting task: " + e.getMessage());
+        }
+    }
+
+    public void refreshTasks() {
         List<ToDo> tasks = new ArrayList<>();
         String sql = "SELECT * FROM todos";
 
@@ -43,7 +84,8 @@ public class ToDoManager {
             while (rs.next()) {
                 String description = rs.getString("description");
                 String endDate = rs.getString("end_date");
-                ToDo task = new ToDo(description, endDate);
+                boolean completed = rs.getBoolean("completed");
+                ToDo task = new ToDo(description, endDate, completed);
                 tasks.add(task);
             }
             toDoList = tasks;
@@ -55,7 +97,7 @@ public class ToDoManager {
     public List<String> getTaskSummaries() {
       List<String> summaries = new ArrayList<>();
       for (ToDo task : toDoList) {
-          summaries.add(task.getTaskDescription() + " - Due: " + task.getEndDate());
+          summaries.add(task.getTaskDescription() + " - Date: " + task.getEndDate() + " - " + (task.isCompleted() ? " (Completed)" : "(Not yet completed)"));
       }
       return summaries;
     }

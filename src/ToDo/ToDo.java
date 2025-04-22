@@ -4,10 +4,10 @@ public class ToDo {
     private String endDate;
     private boolean isCompleted;
 
-    public ToDo(String taskDescription, String endDate) {
+    public ToDo(String taskDescription, String endDate, boolean isCompleted) {
         this.taskDescription = taskDescription;
         this.endDate = endDate;
-        this.isCompleted = false;
+        this.isCompleted = isCompleted;
     }
 
     public String getTaskDescription() {

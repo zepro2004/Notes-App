@@ -6,10 +6,10 @@ import javax.swing.*;
 
 public class Layout {
     // Buttons
-    private JButton addTaskButton;
-    private JButton deleteTaskButton;
     private JButton saveTaskButton;
+    private JButton deleteTaskButton;
     private JButton addNoteButton;
+    private JButton completeTaskButton;
     private JButton saveNoteButton;
     private JButton deleteNoteButton;
     private JButton clearNoteButton;
@@ -30,7 +30,8 @@ public class Layout {
 
     public Layout() {
         setupUI();
-        setupListeners();
+        setupNoteListeners();
+        setupTaskListeners();
     }
 
     private void setupUI() {
@@ -95,12 +96,12 @@ public class Layout {
         taskScrollPane.setPreferredSize(new Dimension(300, 150));
 
         JPanel taskButtonPanel = new JPanel();
-        addTaskButton = new JButton("Add Task");
-        deleteTaskButton = new JButton("Delete");
         saveTaskButton = new JButton("Save");
-        taskButtonPanel.add(addTaskButton);
-        taskButtonPanel.add(deleteTaskButton);
+        deleteTaskButton = new JButton("Delete");
+        completeTaskButton = new JButton("Complete");
         taskButtonPanel.add(saveTaskButton);
+        taskButtonPanel.add(completeTaskButton);
+        taskButtonPanel.add(deleteTaskButton);
 
         toDoListPanel.add(taskInputPanel);
         toDoListPanel.add(endDatePanel);
@@ -108,10 +109,7 @@ public class Layout {
         toDoListPanel.add(taskButtonPanel);
 
         // Load tasks from DB
-        manager.loadTasksFromDatabase();
-        for (String summary : manager.getTaskSummaries()) {
-            taskListModel.addElement(summary);
-        }
+        displayTasks();
 
         tabbedPane.addTab("Notes", notesPanel);
         tabbedPane.addTab("To Do List", toDoListPanel);
@@ -120,7 +118,7 @@ public class Layout {
         frame.setVisible(true);
     }
 
-    private void setupListeners() {
+    private void setupNoteListeners() {
       addNoteButton.addActionListener(e -> {
         String noteTitle = noteTitleField.getText();
         String noteContent = noteContentArea.getText();
@@ -132,28 +130,50 @@ public class Layout {
             JOptionPane.showMessageDialog(null, "Please fill in both fields.");
         }
         });
-      addTaskButton.addActionListener(e -> {
-        String taskDescription = taskDescriptionField.getText();
-        String endDate = taskEndDateField.getText();
-        if (!taskDescription.isEmpty() && !endDate.isEmpty()) {
-            manager.addTask(taskDescription, endDate);
-            taskListModel.addElement(taskDescription + " - Due: " + endDate);
-            taskDescriptionField.setText("");
-            taskEndDateField.setText("");
-        } else {
-            JOptionPane.showMessageDialog(null, "Please fill in both fields.");
-        }
-      });
 
-      deleteTaskButton.addActionListener(e -> {
-        int selectedIndex = taskList.getSelectedIndex();
-        if (selectedIndex != -1) {
-            String selectedTask = taskListModel.getElementAt(selectedIndex);
-            taskListModel.remove(selectedIndex);
-            manager.removeTask(manager.getTasks().get(selectedIndex));
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select a task to delete.");
+    }
+
+    private void setupTaskListeners() {
+        saveTaskButton.addActionListener(e -> {
+            String taskDescription = taskDescriptionField.getText();
+            String endDate = taskEndDateField.getText();
+            boolean isCompleted = false; // Default value for new tasks
+            if (!taskDescription.isEmpty() && !endDate.isEmpty()) {
+                manager.addTask(taskDescription, endDate, isCompleted);
+                taskListModel.addElement(taskDescription + " - Due: " + endDate);
+                taskDescriptionField.setText("");
+                taskEndDateField.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Please fill in both fields.");
+            }
+        });
+
+        deleteTaskButton.addActionListener(e -> {
+            int selectedIndex = taskList.getSelectedIndex();
+            if (selectedIndex != -1) {
+                taskListModel.remove(selectedIndex);
+                manager.removeTask(manager.getTasks().get(selectedIndex));
+            } else {
+                JOptionPane.showMessageDialog(null, "Please select a task to delete.");
+            }
+        });
+
+        completeTaskButton.addActionListener(e -> {
+            int selectedIndex = taskList.getSelectedIndex();
+            if (selectedIndex != -1) {
+                manager.markTaskAsCompleted(manager.getTasks().get(selectedIndex));
+                displayTasks();
+            } else {
+                JOptionPane.showMessageDialog(null, "Please select a task to mark as completed.");
+            }
+        });
+    }
+
+    public void displayTasks() {
+        manager.refreshTasks();
+        taskListModel.clear();
+        for (String summary : manager.getTaskSummaries()) {
+            taskListModel.addElement(summary);
         }
-      });
     }
 }

@@ -18,7 +18,8 @@ public class DBInitializer {
             CREATE TABLE IF NOT EXISTS todos (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 description TEXT NOT NULL,
-                end_date TEXT
+                end_date TEXT,
+                completed BOOLEAN NOT NULL DEFAULT 0
             );
         """;
         try (Connection conn = DBHelper.getConnection(); Statement stmt = conn.createStatement()) {
