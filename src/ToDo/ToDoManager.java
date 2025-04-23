@@ -102,6 +102,7 @@ public class ToDoManager {
       return summaries;
     }
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (ToDo task : toDoList) {
