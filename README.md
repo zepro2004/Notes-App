@@ -12,8 +12,8 @@
 *A quick preview of the user interface:*
 
 <div>
-  <img src="https://github.com/user-attachments/assets/866c2221-20b6-4a45-9817-87b961447a00" alt="Notes Page Interface" width="400"/>
-  <img src="https://github.com/user-attachments/assets/1c7afcea-f67f-4d07-8f88-ce35ea882cdb" alt="ToDo List Interface" width="400"/>
+  <img src="https://github.com/user-attachments/assets/6d91bd18-1505-43e6-b780-210343825b3a" alt="Notes Page Interface" width="400"/>
+  <img src="https://github.com/user-attachments/assets/91f5e5f3-f5e9-4e09-988f-06161c4ddee7" alt="ToDo List Interface" width="400"/>
   </div>
 
 ---
