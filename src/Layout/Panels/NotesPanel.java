@@ -26,6 +26,11 @@ import java.awt.*;
  * <p>The panel integrates with a {@link Notes.NotesManager} for handling
  * note data persistence and retrieval.</p>
  *
+ *
+ * @version 1.0
+ * @since 2025-04-23
+ * @author Louis Bertrand Ntwali
+ *
  * @see Notes.NotesManager
  * @see Notes.Notes
  * @see javax.swing.JPanel

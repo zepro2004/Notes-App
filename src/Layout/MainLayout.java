@@ -6,10 +6,14 @@ import ToDo.ToDoManager;
 import javax.swing.*;
 
 /**
- * Manages the main application window layout for the ToDo List and Notes App.
+ * Manages the main application window layout for the ToDo List and Notes Main.App.
  * This class initializes the necessary managers (for notes and ToDo items)
  * and sets up the main JFrame, organizing the ToDo and Notes panels within a
  * JTabbedPane.
+ *
+ * @version 1.0
+ * @since 2025-04-23
+ * @author Louis Bertrand Ntwali
  *
  * @see Layout.Panels.NotesPanel
  * @see Layout.Panels.ToDoPanel
@@ -57,7 +61,7 @@ public class MainLayout {
      * adds the tabbed pane to the frame, and makes the frame visible.
      */
     private void setupMainFrame() {
-        mainFrame = new JFrame("ToDo List And Notes App");
+        mainFrame = new JFrame("ToDo List And Notes Main.App");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(800, 600);
 

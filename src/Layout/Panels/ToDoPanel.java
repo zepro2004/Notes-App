@@ -30,6 +30,11 @@ import config.*;
  * <p>The panel uses {@code JDatePickerImpl} for date selection and integrates with a {@link ToDo.ToDoManager}
  * for persistence operations (adding, removing, updating, retrieving tasks).</p>
  *
+ *
+ * @version 1.0
+ * @since 2025-04-23
+ * @author Louis Bertrand Ntwali
+ *
  * @see ToDo.ToDoManager
  * @see ToDo.ToDo
  * @see javax.swing.JPanel

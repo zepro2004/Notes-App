@@ -17,6 +17,7 @@ import java.sql.SQLException;
  * @version 1.0
  * @since 2025-04-23
  * @author Louis Bertrand Ntwali
+ *
  * @see java.sql.Connection
  * @see java.sql.DriverManager
  */

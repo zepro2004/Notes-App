@@ -5,6 +5,11 @@ package ToDo;
  * This class serves as the data model for individual tasks managed by the application.
  * It provides constructors for creating new tasks (without an initial ID)
  * and for representing existing tasks retrieved from storage (with an ID).
+ *
+ * @version 1.0
+ * @since 2025-04-23
+ * @author Louis Bertrand Ntwali
+ *
  */
 public class ToDo {
     /**

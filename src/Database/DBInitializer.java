@@ -17,6 +17,8 @@ import java.sql.Statement;
  *
  * @version 1.0
  * @since 2025-04-23
+ * @author Louis Bertrand Ntwali
+ *
  * @see DBHelper
  * @see java.sql.Statement#execute(String)
  */

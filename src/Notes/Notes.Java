@@ -5,6 +5,12 @@ package Notes;
  * This class serves as a data model for notes within the application.
  * It provides constructors for creating new notes (without an initial ID)
  * and for representing existing notes retrieved from storage (with an ID).
+ *
+ *
+ * @version 1.0
+ * @since 2025-04-23
+ * @author Louis Bertrand Ntwali
+ *
  */
 public class Notes {
     /**

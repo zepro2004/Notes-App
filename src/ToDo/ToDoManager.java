@@ -12,6 +12,10 @@ import java.util.List;
  * and retrieval of tasks, persisting changes to a database via {@link Database.DBHelper}.
  * It maintains an in-memory list of tasks which can be refreshed from the database.
  *
+ * @version 1.0
+ * @since 2025-04-23
+ * @author Louis Bertrand Ntwali
+ *
  * @see ToDo
  * @see Database.DBHelper
  */
