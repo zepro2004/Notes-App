@@ -22,12 +22,8 @@
 
 * **Task Management:**
     * ✅ Create, Edit, Delete tasks efficiently.
-    * 🔢 Set task priorities (High, Medium, Low).
+    
     * 📊 Track completion status (Completed / Pending).
-      
-* **Integrated Notes:**
-    * ✍️ Link detailed notes directly to specific tasks.
-    * 📑 Create and edit notes easily within the task context.
 
 * **Reliable Data Persistence:**
     * 💾 Stores all tasks and notes locally using **SQLite**.
@@ -78,6 +74,11 @@
 
 ## 📈 Future Enhancements
 
+      
+* **Integrated Notes:**
+    * ✍️ Link detailed notes directly to specific tasks.
+    * 📑 Create and edit notes easily within the task context.
+* 🔢 Set task priorities (High, Medium, Low).
 * **Search & Filter:** Implement robust search and filtering options (by title, date, status).
 * **Recurring Tasks:** Add support for setting up recurring tasks.
 * **Reminders:** Integrate task reminders and notifications.
