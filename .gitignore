@@ -10,6 +10,7 @@ out/
 target/
 build/
 bin/
+resources/
 
 # OS-specific files
 .DS_Store
