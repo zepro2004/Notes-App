@@ -2,7 +2,7 @@ package Layout.Panels;
 
 
 import Notes.Notes;
-import Notes.NotesManager;
+import Notes.impl.NotesService;
 import config.*; // Assuming this import is necessary for Validation class
 
 import javax.swing.*;
@@ -23,7 +23,7 @@ import java.awt.*;
  * <li>Buttons for saving, deleting, editing, and clearing notes.</li>
  * </ul>
  *
- * <p>The panel integrates with a {@link Notes.NotesManager} for handling
+ * <p>The panel integrates with a {@link Notes.impl.NotesService} for handling
  * note data persistence and retrieval.</p>
  *
  *
@@ -31,7 +31,7 @@ import java.awt.*;
  * @since 2025-04-23
  * @author Louis Bertrand Ntwali
  *
- * @see Notes.NotesManager
+ * @see Notes.impl.NotesService
  * @see Notes.Notes
  * @see javax.swing.JPanel
  * @see javax.swing.JList
@@ -78,15 +78,15 @@ public class NotesPanel extends JPanel {
      */
     private JButton clearNoteButton;
     /**
-     * Reference to the {@link Notes.NotesManager} instance used for managing note data.
+     * Reference to the {@link Notes.impl.NotesService} instance used for managing note data.
      */
-    private NotesManager notesManager;
+    private NotesService notesManager;
 
     /**
      * Flag indicating whether the panel is currently in editing mode (modifying an existing note).
      * {@code true} if editing, {@code false} otherwise.
      */
-    private boolean isEditting = false;
+    private boolean isEditing = false;
     /**
      * Holds the {@link Notes.Notes} object that is currently being edited.
      * {@code null} if not in editing mode or no note is selected for editing.
@@ -100,7 +100,7 @@ public class NotesPanel extends JPanel {
      *
      * @param notesManager The {@link Notes.NotesManager} instance to be used for note operations. Must not be null.
      */
-    public NotesPanel(NotesManager notesManager) {
+    public NotesPanel(NotesService notesManager) {
         this.notesManager = notesManager;
         initializeComponents();
         setupLayout();
@@ -200,11 +200,11 @@ public class NotesPanel extends JPanel {
                 return;
             }
 
-            if (isEditting && currentlyEditingNote != null) {
+            if (isEditing && currentlyEditingNote != null) {
                 currentlyEditingNote.setTitle(noteTitle);
                 currentlyEditingNote.setContent(noteContent);
-                notesManager.updateNoteInDatabase(currentlyEditingNote);
-                isEditting = false;
+                notesManager.updateNote(currentlyEditingNote);
+                isEditing = false;
                 currentlyEditingNote = null;
                 displayNotes();
 
@@ -221,7 +221,7 @@ public class NotesPanel extends JPanel {
         deleteNoteButton.addActionListener( e -> {
             int selectedIndex = notesList.getSelectedIndex();
             if (selectedIndex != -1) {
-                notesManager.removeNote(notesManager.getNotes().get(selectedIndex));
+                notesManager.deleteNote(notesManager.getNotes().get(selectedIndex));
                 displayNotes();
             }
         });
@@ -230,7 +230,7 @@ public class NotesPanel extends JPanel {
         editNoteButton.addActionListener(e -> {
             int selectedIndex = notesList.getSelectedIndex();
             if(selectedIndex != -1) {
-                isEditting = true;
+                isEditing = true;
                 currentlyEditingNote = notesManager.getNotes().get(selectedIndex);
                 noteTitleField.setText(currentlyEditingNote.getTitle());
                 noteContentArea.setText(currentlyEditingNote.getContent());
@@ -245,7 +245,7 @@ public class NotesPanel extends JPanel {
 
     /**
      * Refreshes the list of note titles displayed in the UI.
-     * It first tells the {@link NotesManager} to refresh its internal list (e.g., reload from database),
+     * It first tells the {@link NotesService} to refresh its internal list (e.g., reload from database),
      * then clears the current {@code notesModel}, and finally repopulates the model
      * with the titles of the notes obtained from the {@code NotesManager}.
      * The original code did not explicitly manage the contentViewer state here.

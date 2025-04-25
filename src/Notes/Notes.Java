@@ -90,7 +90,7 @@ public class Notes {
      * @param id The unique identifier to set.
      * @throws IllegalStateException if the note's ID has already been set (i.e., is not 0).
      */
-    protected void setId(int id) {
+    public void setId(int id) {
         if (this.id == 0) {
             this.id = id;
         } else {

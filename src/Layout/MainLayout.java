@@ -1,7 +1,10 @@
 package Layout;
 
+
+import Notes.impl.NotesDatabaseManager;
 import Layout.Panels.*;
-import Notes.NotesManager;
+import Notes.impl.NotesService;
+import Notes.interfaces.NotesDatabaseManagement;
 import ToDo.ToDoManager;
 import javax.swing.*;
 
@@ -17,24 +20,20 @@ import javax.swing.*;
  *
  * @see Layout.Panels.NotesPanel
  * @see Layout.Panels.ToDoPanel
- * @see Notes.NotesManager
+ * @see NotesService
  * @see ToDo.ToDoManager
  * @see javax.swing.JFrame
  * @see javax.swing.JTabbedPane
  */
-public class MainLayout {
+public class MainLayout extends JFrame{
     /**
      * Manages the notes data and operations. Passed to the {@link NotesPanel}.
      */
-    private NotesManager notesManager;
+    private NotesService notesService;
     /**
      * Manages the ToDo items data and operations. Passed to the {@link ToDoPanel}.
      */
     private ToDoManager toDoManager;
-    /**
-     * The main window frame for the application.
-     */
-    private JFrame mainFrame;
 
     /**
      * Constructs the main layout of the application.
@@ -46,11 +45,12 @@ public class MainLayout {
     }
 
     /**
-     * Initializes the {@link NotesManager} and {@link ToDoManager} instances
+     * Initializes the {@link NotesService} and {@link ToDoManager} instances
      * required by the panels.
      */
     private void initializeManagers() {
-        notesManager = new NotesManager();
+        NotesDatabaseManagement databaseManagement = new NotesDatabaseManager();
+        notesService = new NotesService(databaseManagement);
         toDoManager = new ToDoManager();
     }
 
@@ -61,12 +61,15 @@ public class MainLayout {
      * adds the tabbed pane to the frame, and makes the frame visible.
      */
     private void setupMainFrame() {
-        mainFrame = new JFrame("ToDo List And Notes Main.App");
+        /**
+         * The main window frame for the application.
+         */
+        JFrame mainFrame = new JFrame("ToDo List And Notes Main.App");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(800, 600);
 
         JTabbedPane tabbedPane = new JTabbedPane();
-        tabbedPane.addTab("Notes", new NotesPanel(notesManager));
+        tabbedPane.addTab("Notes", new NotesPanel(notesService));
         tabbedPane.addTab("To Do List", new ToDoPanel(toDoManager));
 
         mainFrame.add(tabbedPane);
