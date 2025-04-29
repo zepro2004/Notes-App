@@ -1,7 +1,7 @@
-package ToDo;
+package todo;
 
 /**
- * Represents a single ToDo task item with an ID, description, end date, and completion status.
+ * Represents a single todo task item with an ID, description, end date, and completion status.
  * This class serves as the data model for individual tasks managed by the application.
  * It provides constructors for creating new tasks (without an initial ID)
  * and for representing existing tasks retrieved from storage (with an ID).
@@ -13,7 +13,7 @@ package ToDo;
  */
 public class ToDo {
     /**
-     * The unique identifier for the ToDo task. Assigned when the task is saved.
+     * The unique identifier for the todo task. Assigned when the task is saved.
      * A value of 0 typically indicates a task that has not yet been persisted.
      */
     private int id;
@@ -32,7 +32,7 @@ public class ToDo {
     private boolean isCompleted;
 
     /**
-     * Constructs a new {@code ToDo} instance, typically used for tasks that haven't been saved yet.
+     * Constructs a new {@code todo} instance, typically used for tasks that haven't been saved yet.
      * The ID is initialized to 0, and the completion status is set based on the provided parameter.
      *
      * @param taskDescription The description of the task.
@@ -47,7 +47,7 @@ public class ToDo {
     }
 
     /**
-     * Constructs a {@code ToDo} instance with a specific ID, description, end date, and completion status.
+     * Constructs a {@code todo} instance with a specific ID, description, end date, and completion status.
      * Typically used when loading existing tasks from storage.
      *
      * @param id              The unique identifier of the task.

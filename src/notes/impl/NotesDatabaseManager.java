@@ -1,8 +1,8 @@
-package Notes.impl;
+package notes.impl;
 
-import Notes.Notes;
-import Notes.interfaces.NotesDatabaseManagement;
-import Database.DBHelper;
+import notes.Notes;
+import notes.interfaces.NotesDatabaseManagement;
+import database.DBHelper;
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;

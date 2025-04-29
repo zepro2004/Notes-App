@@ -1,7 +1,7 @@
-package Main;
+package main;
 
-import Database.DBInitializer;
-import Layout.MainLayout;
+import database.DBInitializer;
+import layout.MainLayout;
 
 /**
  * The main entry point for the application.
@@ -14,8 +14,8 @@ import Layout.MainLayout;
  * <p>
  * The application follows a simple startup procedure:
  * <ol>
- * <li>Initialize the database using {@link Database.DBInitializer}.</li>
- * <li>Create and display the main application window using {@link Layout.MainLayout}.</li>
+ * <li>Initialize the database using {@link database.DBInitializer}.</li>
+ * <li>Create and display the main application window using {@link layout.MainLayout}.</li>
  * </ol>
  * Any exceptions thrown during this critical startup phase are propagated upwards,
  * potentially terminating the application if not handled by the JVM environment.
@@ -25,8 +25,8 @@ import Layout.MainLayout;
  * @since 2025-04-23
  * @author Louis Bertrand Ntwali
  *
- * @see Database.DBInitializer
- * @see Layout.MainLayout
+ * @see database.DBInitializer
+ * @see layout.MainLayout
  */
 public class App {
 
@@ -40,10 +40,10 @@ public class App {
      * <p>
      * The sequence of operations is:
      * <ol>
-     * <li>Calls {@link Database.DBInitializer#initializeDatabase()} to ensure the
+     * <li>Calls {@link database.DBInitializer#initializeDatabase()} to ensure the
      * database is ready for use. This might involve establishing connections,
      * creating schemas if they don't exist, or running initial data scripts.</li>
-     * <li>Instantiates the {@link Layout.MainLayout} class. The constructor of
+     * <li>Instantiates the {@link layout.MainLayout} class. The constructor of
      * {@code MainLayout} is expected to build and display the primary
      * user interface of the application.</li>
      * </ol>

@@ -1,27 +1,30 @@
-package Layout;
+package layout;
 
 
-import Notes.impl.NotesDatabaseManager;
-import Layout.Panels.*;
-import Notes.impl.NotesService;
-import Notes.interfaces.NotesDatabaseManagement;
-import ToDo.ToDoManager;
+import notes.impl.NotesDatabaseManager;
+import notes.impl.NotesService;
+import notes.interfaces.NotesDatabaseManagement;
+import todo.impl.ToDoDatabaseManager;
+import todo.impl.ToDoService;
+import todo.interfaces.ToDoDatabaseManagement;
+
 import javax.swing.*;
+import layout.panels.*;
 
 /**
- * Manages the main application window layout for the ToDo List and Notes Main.App.
- * This class initializes the necessary managers (for notes and ToDo items)
- * and sets up the main JFrame, organizing the ToDo and Notes panels within a
+ * Manages the main application window layout for the todo List and notes main.App.
+ * This class initializes the necessary managers (for notes and todo items)
+ * and sets up the main JFrame, organizing the todo and notes panels within a
  * JTabbedPane.
  *
  * @version 1.0
  * @since 2025-04-23
  * @author Louis Bertrand Ntwali
  *
- * @see Layout.Panels.NotesPanel
- * @see Layout.Panels.ToDoPanel
+ * @see layout.panels.NotesPanel
+ * @see layout.panels.ToDoPanel
  * @see NotesService
- * @see ToDo.ToDoManager
+ * @see ToDoService
  * @see javax.swing.JFrame
  * @see javax.swing.JTabbedPane
  */
@@ -31,9 +34,9 @@ public class MainLayout extends JFrame{
      */
     private NotesService notesService;
     /**
-     * Manages the ToDo items data and operations. Passed to the {@link ToDoPanel}.
+     * Manages the todo items data and operations. Passed to the {@link ToDoPanel}.
      */
-    private ToDoManager toDoManager;
+    private ToDoService toDoManager;
 
     /**
      * Constructs the main layout of the application.
@@ -45,13 +48,14 @@ public class MainLayout extends JFrame{
     }
 
     /**
-     * Initializes the {@link NotesService} and {@link ToDoManager} instances
+     * Initializes the {@link NotesService} and {@link ToDoService} instances
      * required by the panels.
      */
     private void initializeManagers() {
-        NotesDatabaseManagement databaseManagement = new NotesDatabaseManager();
-        notesService = new NotesService(databaseManagement);
-        toDoManager = new ToDoManager();
+        NotesDatabaseManagement notesDatabaseManagement = new NotesDatabaseManager();
+        ToDoDatabaseManagement todoDatabaseManagement = new ToDoDatabaseManager();
+        notesService = new NotesService(notesDatabaseManagement);
+        toDoManager = new ToDoService(todoDatabaseManagement);
     }
 
     /**
@@ -61,10 +65,10 @@ public class MainLayout extends JFrame{
      * adds the tabbed pane to the frame, and makes the frame visible.
      */
     private void setupMainFrame() {
-        /**
+        /*
          * The main window frame for the application.
          */
-        JFrame mainFrame = new JFrame("ToDo List And Notes Main.App");
+        JFrame mainFrame = new JFrame("todo List And notes main.App");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(800, 600);
 

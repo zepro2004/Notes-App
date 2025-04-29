@@ -1,4 +1,4 @@
-package Notes;
+package notes;
 
 /**
  * Represents a single note with an ID, title, and content.
@@ -28,7 +28,7 @@ public class Notes {
     private String content;
 
     /**
-     * Constructs a new {@code Notes} instance, typically used for notes that haven't been saved yet.
+     * Constructs a new {@code notes} instance, typically used for notes that haven't been saved yet.
      * The ID is initialized to 0.
      *
      * @param title   The title of the note.
@@ -41,7 +41,7 @@ public class Notes {
     }
 
     /**
-     * Constructs a {@code Notes} instance with a specific ID, title, and content.
+     * Constructs a {@code notes} instance with a specific ID, title, and content.
      * Typically used when loading existing notes from storage.
      *
      * @param id      The unique identifier of the note.

@@ -1,53 +1,59 @@
-package Notes.impl;
+package notes.impl;
 
-import Notes.Notes;
-import Notes.interfaces.NotesDatabaseManagement;
+import notes.Notes;
+import common.interfaces.Services;
+import notes.interfaces.NotesDatabaseManagement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotesService {
+public class NotesService implements Services<Notes> {
     private final NotesDatabaseManagement repository;
     private List<Notes> notesList;
 
     public NotesService(NotesDatabaseManagement repository) {
         this.repository = repository;
         this.notesList = new ArrayList<>();
-        refreshNotes();
+        refresh();
     }
 
-    public List<Notes> getNotes() {
+    @Override
+    public List<Notes> getAll() {
         return notesList;
     }
 
-    public void addNote(String title, String content) {
-        Notes note = new Notes(title, content);
+    @Override
+    public void add(Notes note) {
         repository.save(note);
         notesList.add(note);
     }
 
-    public void deleteNote(Notes note) {
+    @Override
+    public void delete(Notes note) {
         repository.delete(note);
         notesList.remove(note);
     }
 
-    public void refreshNotes() {
+    @Override
+    public void refresh() {
         notesList = repository.refresh();
     }
 
-    public void updateNote(Notes note) {
+    @Override
+    public void update(Notes note) {
         repository.update(note);
-        refreshNotes();
+        refresh();
     }
 
-    public void clearNotes() {
+    @Override
+    public void clear() {
         repository.clear();
         notesList.clear();
     }
 
-    public List<String> getNotesSummary() {
+    public List<String> getSummary() {
         List<String> summaries = new ArrayList<>();
         for (Notes note : notesList) {
-            summaries.add(note.getTitle() + " - Content: " + note.getContent());
+            summaries.add(note.getTitle());
         }
         return summaries;
     }

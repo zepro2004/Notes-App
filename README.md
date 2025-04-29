@@ -1,4 +1,4 @@
-# 📝 Notes + To-Do Application
+# 📝 notes + To-Do Application
 
 [![Build Status](https://img.shields.io/badge/build-passing-green)](https://github.com/zepro2004/Notes-and-ToDo-Application)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
@@ -12,8 +12,8 @@
 *A quick preview of the user interface:*
 
 <div>
-  <img src="https://github.com/user-attachments/assets/6d91bd18-1505-43e6-b780-210343825b3a" alt="Notes Page Interface" width="400"/>
-  <img src="https://github.com/user-attachments/assets/91f5e5f3-f5e9-4e09-988f-06161c4ddee7" alt="ToDo List Interface" width="400"/>
+  <img src="https://github.com/user-attachments/assets/6d91bd18-1505-43e6-b780-210343825b3a" alt="notes Page Interface" width="400"/>
+  <img src="https://github.com/user-attachments/assets/91f5e5f3-f5e9-4e09-988f-06161c4ddee7" alt="todo List Interface" width="400"/>
   </div>
 
 ---
@@ -25,7 +25,7 @@
     * 🔢 Set task priorities (High, Medium, Low).
     * 📊 Track completion status (Completed / Pending).
       
-* **Integrated Notes:**
+* **Integrated notes:**
     * ✍️ Link detailed notes directly to specific tasks.
     * 📑 Create and edit notes easily within the task context.
 
@@ -46,7 +46,7 @@
 
 * **Core Language:** Java (JDK 8+)
 * **GUI Framework:** Java Swing
-* **Database:** SQLite
+* **database:** SQLite
 * **DB Connectivity:** JDBC (SQLite JDBC Driver)
 * **Testing:** JUnit
 * **IDE:** Developed using Eclipse / IntelliJ IDEA
@@ -64,8 +64,8 @@
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/zepro2004/Notes-and-ToDo-Application.git](https://github.com/zepro2004/Notes-and-ToDo-Application.git)
-    cd Notes-and-ToDo-Application
+    git clone [https://github.com/zepro2004/notes-and-todo-Application.git](https://github.com/zepro2004/notes-and-todo-Application.git)
+    cd notes-and-todo-Application
     ```
 2.  **Configure IDE:**
     * Open the project folder in your preferred Java IDE (Eclipse, IntelliJ IDEA, etc.).

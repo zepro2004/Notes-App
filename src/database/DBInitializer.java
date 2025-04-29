@@ -1,4 +1,4 @@
-package Database;
+package database;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -42,7 +42,7 @@ public class DBInitializer {
      * <li>Executes both CREATE TABLE statements using the Statement object.</li>
      * <li>Prints a confirmation message to standard output if successful.</li>
      * </ol>
-     * Database resources ({@link Connection} and {@link Statement}) are managed
+     * database resources ({@link Connection} and {@link Statement}) are managed
      * automatically using a try-with-resources block, ensuring they are closed
      * even if exceptions occur.
      * <p>
@@ -75,7 +75,7 @@ public class DBInitializer {
             stmt.execute(createNotesTable);
             stmt.execute(createTasksTable);
 
-            System.out.println("Database tables 'notes' and 'todos' initialized successfully (or already exist).");
+            System.out.println("database tables 'notes' and 'todos' initialized successfully (or already exist).");
 
         } catch (SQLException e) {
             System.err.println("Error initializing database tables: " + e.getMessage());

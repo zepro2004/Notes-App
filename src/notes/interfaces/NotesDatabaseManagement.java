@@ -1,6 +1,6 @@
-package Notes.interfaces;
+package notes.interfaces;
 
-import Notes.Notes;
+import notes.Notes;
 import common.interfaces.DatabaseManagement;
 import java.util.List;
 
