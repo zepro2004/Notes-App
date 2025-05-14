@@ -72,4 +72,9 @@ public class ToDoService implements Services<ToDo> {
         }
         return sb.toString();
     }
+
+    public void sort() {
+        this.toDoList = repository.sortedGet();
+    }
+
 }

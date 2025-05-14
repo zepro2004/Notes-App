@@ -7,3 +7,4 @@ import java.util.List;
 public interface NotesDatabaseManagement extends DatabaseManagement<Notes> {
     List<Notes> findByTitle(String title);
 }
+

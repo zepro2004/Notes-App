@@ -4,6 +4,7 @@ import notes.Notes;
 import common.interfaces.Services;
 import notes.interfaces.NotesDatabaseManagement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class NotesService implements Services<Notes> {
@@ -66,5 +67,9 @@ public class NotesService implements Services<Notes> {
         }
         return sb.toString();
     }
+
+   /*
+    * Implement sorting alphabetically, by date and
+    * */
 }
 

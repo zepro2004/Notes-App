@@ -8,4 +8,5 @@ public interface DatabaseManagement<T>{
     void update(T item);
     void clear();
     List<T> refresh();
+    List<T> sortedGet();
 }

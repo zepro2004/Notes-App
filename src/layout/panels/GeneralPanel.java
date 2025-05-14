@@ -89,6 +89,10 @@ public abstract class GeneralPanel<T> extends JPanel {
         }
     }
 
+    protected void orderItemsByName() {
+
+    }
+
     protected void selectFirst() {
         if(!listModel.isEmpty()) {
             itemList.setSelectedIndex(0);

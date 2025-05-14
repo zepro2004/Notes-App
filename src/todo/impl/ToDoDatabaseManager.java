@@ -107,10 +107,33 @@ public class ToDoDatabaseManager implements ToDoDatabaseManagement {
     public void clear() {
         String sql = "DELETE FROM todos";
         try(Connection conn = DBHelper.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            PreparedStatement stmt = conn.prepareStatement(sql))
+        {
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error deleting all todos: " + e.getMessage(), e);
+        }
+    }
+
+    public List<ToDo> sortedGet() {
+        List<ToDo> todos = new ArrayList<>();
+        String sql = "SELECT * FROM todos ORDER BY description";
+        try(Connection conn = DBHelper.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) {
+
+            while(rs.next()) {
+                int id = rs.getInt("id");
+                String description = rs.getString("description");
+                String endDate = rs.getString("end_date");
+                boolean completed = rs.getBoolean("completed");
+                ToDo task = new ToDo(description, endDate, completed);
+                task.setId(id);
+                todos.add(task);
+            }
+            return todos;
+        }  catch (SQLException e) {
+            throw new RuntimeException("Error getting sorted todos: " + e.getMessage(), e);
         }
     }
 
