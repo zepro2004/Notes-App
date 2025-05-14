@@ -68,6 +68,10 @@ public class NotesService implements Services<Notes> {
         return sb.toString();
     }
 
+    public void sort() {
+        this.notesList = repository.sortedGet();
+    }
+
    /*
     * Implement sorting alphabetically, by date and
     * */

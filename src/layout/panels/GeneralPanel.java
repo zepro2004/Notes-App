@@ -18,6 +18,7 @@ public abstract class GeneralPanel<T> extends JPanel {
     protected JButton saveButton = new JButton("Save");
     protected JButton deleteButton = new JButton("Delete");
     protected JButton editButton = new JButton("Edit");
+    protected JComboBox<String> sortOptions;
     protected DefaultListModel<String> listModel = new DefaultListModel<>();
     protected JList<String> itemList = new JList<>(listModel);
     protected boolean isEditing = false;
@@ -29,6 +30,7 @@ public abstract class GeneralPanel<T> extends JPanel {
         setLayout(new BorderLayout());
         add(createInputPanel(), BorderLayout.NORTH);
         add(createCenterPanel(), BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
         buttonPanel.add(saveButton);
         buttonPanel.add(editButton);
         buttonPanel.add(deleteButton);
@@ -41,6 +43,7 @@ public abstract class GeneralPanel<T> extends JPanel {
         saveButton.addActionListener(e -> onSave());
         editButton.addActionListener(e -> onEdit());
         deleteButton.addActionListener(e -> onDelete());
+        sortOptions.addActionListener(e -> onSort());
     }
 
     private void onSave() {
@@ -81,16 +84,21 @@ public abstract class GeneralPanel<T> extends JPanel {
         }
     }
 
+    private void onSort() {
+        service.sort();
+        updateListModel();
+    }
+
     protected void displayItems() {
         service.refresh();
+        updateListModel();
+    }
+
+    private void updateListModel() {
         listModel.clear();
         for(String s: service.getSummary()) {
             listModel.addElement(s);
         }
-    }
-
-    protected void orderItemsByName() {
-
     }
 
     protected void selectFirst() {

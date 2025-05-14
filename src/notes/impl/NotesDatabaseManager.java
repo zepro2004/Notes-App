@@ -3,6 +3,8 @@ package notes.impl;
 import notes.Notes;
 import notes.interfaces.NotesDatabaseManagement;
 import database.DBHelper;
+import todo.ToDo;
+
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
@@ -104,6 +106,26 @@ public class NotesDatabaseManager implements NotesDatabaseManagement {
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error deleting all notes: " + e.getMessage(), e);
+        }
+    }
+    public List<Notes> sortedGet() {
+        List<Notes> notes = new ArrayList<>();
+        String sql = "SELECT * FROM notes ORDER BY title";
+        try(Connection conn = DBHelper.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) {
+
+            while(rs.next()) {
+                int id = rs.getInt("id");
+                String title = rs.getString("title");
+                String content = rs.getString("content");
+                Notes note = new Notes(title, content);
+                note.setId(id);
+                notes.add(note);
+            }
+            return notes;
+        }  catch (SQLException e) {
+            throw new RuntimeException("Error getting sorted notes: " + e.getMessage(), e);
         }
     }
 }

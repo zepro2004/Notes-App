@@ -81,6 +81,10 @@ public class ToDoPanel extends GeneralPanel<ToDo> {
         DateComponentFormatter formatter = new DateComponentFormatter();
         datePicker = new JDatePickerImpl(datePanel, formatter);
 
+        sortOptions = new JComboBox<>(new String[] {
+                "Description"
+        });
+
         JButton completeTaskButton = new JButton("Complete");
         buttonPanel.add(completeTaskButton);
         completeTaskButton.addActionListener(e -> onComplete());
@@ -99,7 +103,7 @@ public class ToDoPanel extends GeneralPanel<ToDo> {
 
     @Override
     protected JPanel createInputPanel() {
-        JPanel inputPanel = new JPanel(new GridLayout(2, 1));
+        JPanel inputPanel = new JPanel(new GridLayout(3, 1));
 
         JPanel taskPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         taskPanel.add(new JLabel("Task: "));
@@ -109,8 +113,13 @@ public class ToDoPanel extends GeneralPanel<ToDo> {
         datePanel.add(new JLabel("End Date: "));
         datePanel.add(datePicker);
 
+        JPanel sortPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        sortPanel.add(new JLabel("Sort: "));
+        sortPanel.add(sortOptions);
+
         inputPanel.add(taskPanel);
         inputPanel.add(datePanel);
+        inputPanel.add(sortPanel);
 
         return inputPanel;
     }

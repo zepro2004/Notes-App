@@ -84,8 +84,12 @@ public class NotesPanel extends GeneralPanel<Notes> {
         contentViewer.setEditable(false);
         buttonPanel.add(clearNoteButton);
 
+        sortOptions = new JComboBox<>(new String[] {
+                "Title"
+        });
+
         clearNoteButton.addActionListener(e -> onClear());
-        itemList.addListSelectionListener((ListSelectionListener) e -> onListSelection(e));
+        itemList.addListSelectionListener(e -> onListSelection(e));
     }
 
     private void onClear() {
@@ -118,8 +122,14 @@ public class NotesPanel extends GeneralPanel<Notes> {
         contentPanel.add(new JLabel("Content: "));
         contentPanel.add(new JScrollPane(noteContentArea));
 
+        JPanel sortPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        sortPanel.add(new JLabel("Sort: "));
+        sortPanel.add(sortOptions);
+        sortPanel.setPreferredSize(new Dimension(450, (int)sortPanel.getPreferredSize().getHeight()));
+
         inputPanel.add(titlePanel, BorderLayout.NORTH);
         inputPanel.add(contentPanel, BorderLayout.CENTER);
+        inputPanel.add(sortPanel, BorderLayout.EAST);
 
         return inputPanel;
     }
