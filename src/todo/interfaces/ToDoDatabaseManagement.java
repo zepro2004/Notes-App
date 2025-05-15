@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ToDoDatabaseManagement extends DatabaseManagement<ToDo> {
     List<ToDo> findToDoByTitle(String taskDescription);
+    List<ToDo> getSortedByDescription();
+    List<ToDo> getSortedByDate();
 }

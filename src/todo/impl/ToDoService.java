@@ -73,8 +73,17 @@ public class ToDoService implements Services<ToDo> {
         return sb.toString();
     }
 
-    public void sort() {
-        this.toDoList = repository.sortedGet();
+
+    public void sort(String options) {
+        if(options == null) {
+            toDoList = repository.refresh();
+            return;
+        }
+        switch(options) {
+            case "Description" -> toDoList = repository.getSortedByDescription();
+            case "Date" -> toDoList = repository.getSortedByDate();
+            default -> toDoList = repository.refresh();
+        }
     }
 
 }

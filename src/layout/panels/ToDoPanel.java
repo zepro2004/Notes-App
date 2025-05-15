@@ -82,8 +82,9 @@ public class ToDoPanel extends GeneralPanel<ToDo> {
         datePicker = new JDatePickerImpl(datePanel, formatter);
 
         sortOptions = new JComboBox<>(new String[] {
-                "Description"
+                "Description", "Date"
         });
+        sortOptions.addActionListener(e -> onSort());
 
         JButton completeTaskButton = new JButton("Complete");
         buttonPanel.add(completeTaskButton);
@@ -99,6 +100,12 @@ public class ToDoPanel extends GeneralPanel<ToDo> {
         }  else {
             showError("Please select a task to mark as completed.");
         }
+    }
+
+    private void onSort() {
+        String selected = (String) sortOptions.getSelectedItem();
+        toDoManager.sort(selected);
+        updateListModel();
     }
 
     @Override

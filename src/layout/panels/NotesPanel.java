@@ -87,6 +87,7 @@ public class NotesPanel extends GeneralPanel<Notes> {
         sortOptions = new JComboBox<>(new String[] {
                 "Title"
         });
+        sortOptions.addActionListener(e -> onSort());
 
         clearNoteButton.addActionListener(e -> onClear());
         itemList.addListSelectionListener(e -> onListSelection(e));
@@ -97,6 +98,12 @@ public class NotesPanel extends GeneralPanel<Notes> {
         displayItems();
         clearInputFields();
         contentViewer.setText("");
+    }
+
+    private void onSort() {
+        String selected = (String) sortOptions.getSelectedItem();
+        notesManager.sort(selected);
+        updateListModel();
     }
 
     private void onListSelection(ListSelectionEvent e) {

@@ -8,7 +8,7 @@ public interface Services<T> {
     void update(T item);
     void refresh();
     void clear();
-    void sort();
+    void sort(String option);
     List<String> getSummary();
     List <T> getAll();
 }

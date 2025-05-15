@@ -108,9 +108,13 @@ public class NotesDatabaseManager implements NotesDatabaseManagement {
             throw new RuntimeException("Error deleting all notes: " + e.getMessage(), e);
         }
     }
-    public List<Notes> sortedGet() {
+
+    public List<Notes> getSortedByTitle() {
+        return sortedGet("SELECT * FROM todos ORDER BY title");
+    }
+
+    public List<Notes> sortedGet(String sql) {
         List<Notes> notes = new ArrayList<>();
-        String sql = "SELECT * FROM notes ORDER BY title";
         try(Connection conn = DBHelper.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery()) {

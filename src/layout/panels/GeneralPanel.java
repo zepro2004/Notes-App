@@ -43,7 +43,6 @@ public abstract class GeneralPanel<T> extends JPanel {
         saveButton.addActionListener(e -> onSave());
         editButton.addActionListener(e -> onEdit());
         deleteButton.addActionListener(e -> onDelete());
-        sortOptions.addActionListener(e -> onSort());
     }
 
     private void onSave() {
@@ -84,17 +83,12 @@ public abstract class GeneralPanel<T> extends JPanel {
         }
     }
 
-    private void onSort() {
-        service.sort();
-        updateListModel();
-    }
-
     protected void displayItems() {
         service.refresh();
         updateListModel();
     }
 
-    private void updateListModel() {
+    void updateListModel() {
         listModel.clear();
         for(String s: service.getSummary()) {
             listModel.addElement(s);

@@ -115,9 +115,16 @@ public class ToDoDatabaseManager implements ToDoDatabaseManagement {
         }
     }
 
-    public List<ToDo> sortedGet() {
+    public List<ToDo> getSortedByDescription() {
+        return sortedGet("SELECT * FROM todos ORDER BY description");
+    }
+
+    public List<ToDo> getSortedByDate() {
+        return sortedGet("SELECT * FROM todos ORDER BY end_date");
+    }
+
+    public List<ToDo> sortedGet(String sql) {
         List<ToDo> todos = new ArrayList<>();
-        String sql = "SELECT * FROM todos ORDER BY description";
         try(Connection conn = DBHelper.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery()) {

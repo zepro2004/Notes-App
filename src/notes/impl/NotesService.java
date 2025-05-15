@@ -68,8 +68,15 @@ public class NotesService implements Services<Notes> {
         return sb.toString();
     }
 
-    public void sort() {
-        this.notesList = repository.sortedGet();
+    public void sort(String options) {
+        if(options == null) {
+            notesList = repository.refresh();
+            return;
+        }
+        switch(options) {
+            case "title" -> notesList = repository.getSortedByTitle();
+            default -> notesList = repository.refresh();
+        }
     }
 
    /*
