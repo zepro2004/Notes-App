@@ -1,6 +1,5 @@
 package layout;
 
-
 import notes.impl.NotesDatabaseManager;
 import notes.impl.NotesService;
 import notes.interfaces.NotesDatabaseManagement;
@@ -13,9 +12,27 @@ import layout.panels.*;
 
 /**
  * Manages the main application window layout for the todo List and notes main.App.
- * This class initializes the necessary managers (for notes and todo items)
- * and sets up the main JFrame, organizing the todo and notes panels within a
- * JTabbedPane.
+ * This class serves as the primary container and entry point for the user interface,
+ * implementing a tabbed interface design pattern to organize functionality.
+ *
+ * <p>Key Responsibilities:</p>
+ * <ul>
+ * <li>Initializing database connections and service layers</li>
+ * <li>Setting up the main application frame and tabbed interface</li>
+ * <li>Configuring the application look and feel</li>
+ * <li>Organizing the Notes and ToDo panels within the UI</li>
+ * </ul>
+ *
+ * <p>Application Structure:</p>
+ * <ul>
+ * <li>The application uses a layered architecture with separation of concerns</li>
+ * <li>UI Layer: MainLayout (this class), NotesPanel, ToDoPanel</li>
+ * <li>Service Layer: NotesService, ToDoService</li>
+ * <li>Data Access Layer: NotesDatabaseManager, ToDoDatabaseManager</li>
+ * </ul>
+ *
+ * <p>The main window contains a tabbed pane with panels for Notes and ToDo items,
+ * each handling its own domain-specific functionality while sharing a common design pattern.</p>
  *
  * @version 1.0
  * @since 2025-04-23
@@ -30,26 +47,60 @@ import layout.panels.*;
  */
 public class MainLayout extends JFrame{
     /**
-     * Manages the notes data and operations. Passed to the {@link NotesPanel}.
+     * Service layer component for notes functionality.
+     * Manages the business logic for note operations and provides
+     * an abstraction over the notes database. This service is instantiated
+     * in {@link #initializeManagers()} and passed to the {@link NotesPanel}.
      */
     private NotesService notesService;
+
     /**
-     * Manages the todo items data and operations. Passed to the {@link ToDoPanel}.
+     * Service layer component for todo functionality.
+     * Manages the business logic for task operations and provides
+     * an abstraction over the todo database. This service is instantiated
+     * in {@link #initializeManagers()} and passed to the {@link ToDoPanel}.
      */
     private ToDoService toDoManager;
 
     /**
      * Constructs the main layout of the application.
-     * Initializes the data managers and sets up the main application frame with its components.
+     * Performs the following initialization sequence:
+     * <ol>
+     * <li>Initializes the database managers and service components</li>
+     * <li>Sets up the main application frame with tabbed interface</li>
+     * <li>Attempts to apply the Nimbus look and feel for modern UI styling</li>
+     * </ol>
+     *
+     * <p>If the Nimbus look and feel is not available, the application will
+     * fall back to the system default look and feel.</p>
      */
     public MainLayout() {
         initializeManagers();
         setupMainFrame();
+        // In main application class
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+            // Or for a more modern look:
+            // UIManager.setLookAndFeel("com.formdev.flatlaf.FlatLightLaf");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
-     * Initializes the {@link NotesService} and {@link ToDoService} instances
-     * required by the panels.
+     * Initializes the service layer components of the application.
+     *
+     * <p>This method performs the following steps:</p>
+     * <ol>
+     * <li>Creates database management instances for notes and todo items</li>
+     * <li>Initializes service objects with their respective database managers</li>
+     * </ol>
+     *
+     * <p>The initialized services are stored in instance variables and later
+     * passed to their respective UI panels.</p>
+     *
+     * @see NotesDatabaseManager
+     * @see ToDoDatabaseManager
      */
     private void initializeManagers() {
         NotesDatabaseManagement notesDatabaseManagement = new NotesDatabaseManager();
@@ -59,10 +110,26 @@ public class MainLayout extends JFrame{
     }
 
     /**
-     * Creates and configures the main application window ({@link JFrame}).
-     * Sets the title, default close operation, and size. It then creates a
-     * {@link JTabbedPane} to hold the {@link NotesPanel} and {@link ToDoPanel},
-     * adds the tabbed pane to the frame, and makes the frame visible.
+     * Creates and configures the main application window.
+     *
+     * <p>This method performs the following UI setup:</p>
+     * <ol>
+     * <li>Creates a JFrame with title "todo List And notes main.App"</li>
+     * <li>Configures window properties (size 800x600, close operation)</li>
+     * <li>Creates a tabbed pane with two tabs:</li>
+     *   <ul>
+     *     <li>Notes tab - Contains the NotesPanel for note management</li>
+     *     <li>To Do List tab - Contains the ToDoPanel for task management</li>
+     *   </ul>
+     * <li>Adds the tabbed pane to the frame and makes it visible</li>
+     * </ol>
+     *
+     * <p>The NotesPanel and ToDoPanel are initialized with their respective
+     * service instances to provide data access and business logic.</p>
+     *
+     * @see JTabbedPane
+     * @see NotesPanel
+     * @see ToDoPanel
      */
     private void setupMainFrame() {
         /*
