@@ -12,12 +12,15 @@ build/
 bin/
 resources/
 javadoc/
+doc/
 
 # OS-specific files
 .DS_Store
 Thumbs.db
 
 # Others
+.classpath
+.project
 *.class
 .*db
 App Layout.txt

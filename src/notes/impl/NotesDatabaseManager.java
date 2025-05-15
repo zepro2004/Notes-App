@@ -45,6 +45,22 @@ import java.util.ArrayList;
  * @see database.DBHelper
  */
 public class NotesDatabaseManager implements NotesDatabaseManagement {
+    /**
+     * Constructs a new NotesDatabaseManager instance with no initialization.
+     *
+     * <p>Implementation Details:</p>
+     * <ul>
+     * <li>No resources are allocated during construction</li>
+     * <li>Database connections are established per method call via DBHelper</li>
+     * <li>No configuration parameters are required</li>
+     * </ul>
+     *
+     * <p>This implementation follows the lightweight initialization pattern,
+     * where resources are acquired only when needed rather than at construction time.</p>
+     */
+    public NotesDatabaseManager() {
+        // Default constructor with no initialization needed
+    }
 
     /**
      * Persists a new note to the database.

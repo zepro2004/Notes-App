@@ -114,14 +114,15 @@ public class MainLayout extends JFrame{
      *
      * <p>This method performs the following UI setup:</p>
      * <ol>
-     * <li>Creates a JFrame with title "todo List And notes main.App"</li>
-     * <li>Configures window properties (size 800x600, close operation)</li>
-     * <li>Creates a tabbed pane with two tabs:</li>
-     *   <ul>
-     *     <li>Notes tab - Contains the NotesPanel for note management</li>
-     *     <li>To Do List tab - Contains the ToDoPanel for task management</li>
-     *   </ul>
-     * <li>Adds the tabbed pane to the frame and makes it visible</li>
+     *   <li>Creates a JFrame with title "todo List And notes main.App"</li>
+     *   <li>Configures window properties (size 800x600, close operation)</li>
+     *   <li>Creates a tabbed pane with two tabs:
+     *     <ul>
+     *       <li>Notes tab – Contains the NotesPanel for note management</li>
+     *       <li>To Do List tab – Contains the ToDoPanel for task management</li>
+     *     </ul>
+     *   </li>
+     *   <li>Adds the tabbed pane to the frame and makes it visible</li>
      * </ol>
      *
      * <p>The NotesPanel and ToDoPanel are initialized with their respective

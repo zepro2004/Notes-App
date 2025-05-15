@@ -38,7 +38,7 @@ public class Validation {
      * @return The value of {@link #MAX_TITLE_LENGTH}.
      * @see #MAX_TITLE_LENGTH
      */
-    public int getMaxTitleLength() {
+    public static int getMaxTitleLength() {
         return MAX_TITLE_LENGTH;
     }
 
@@ -49,7 +49,7 @@ public class Validation {
      * @return The value of {@link #MAX_CONTENT_LENGTH}.
      * @see #MAX_CONTENT_LENGTH
      */
-    public int getMaxContentLength() {
+    public static int getMaxContentLength() {
         return MAX_CONTENT_LENGTH;
     }
 
@@ -58,13 +58,12 @@ public class Validation {
      * or exceeds a specified maximum length.
      * <p>
      * This is a general-purpose helper method used by more specific validation checks.
-     * A string is considered invalid if:
+     * A string is considered invalid if: </p>
      * <ul>
      * <li>It is {@code null}.</li>
      * <li>Its trimmed version (leading/trailing whitespace removed) is empty.</li>
      * <li>Its original length (before trimming) is strictly greater than {@code maxLength}.</li>
      * </ul>
-     * </p>
      *
      * @param input The string to validate. Can be {@code null}.
      * @param maxLength The maximum permitted length for the string (exclusive of trimming).
@@ -118,14 +117,14 @@ public class Validation {
     /**
      * Validates if a given string represents a valid end date, checking both format and temporal constraint.
      * <p>
-     * A valid end date must meet two criteria:
+     * A valid end date must meet two criteria: </p>
      * <ol>
      * <li>It must be parseable according to the specific date format "yyyy-MM-dd". Leading/trailing
      * whitespace in the input string is ignored during parsing.</li>
      * <li>The parsed date must represent the current date (today) or a date in the future.
      * Past dates are considered invalid.</li>
      * </ol>
-     * If the date string cannot be parsed using the specified format (due to incorrect format or
+     * <p> If the date string cannot be parsed using the specified format (due to incorrect format or
      * invalid date values like "2023-02-30"), a {@link DateTimeParseException} is caught internally.
      * When a parsing error occurs, an error message detailing the failure is printed to
      * {@link System#out}, and the method returns {@code false}.

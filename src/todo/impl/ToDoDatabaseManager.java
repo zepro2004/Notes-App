@@ -43,6 +43,19 @@ import java.util.ArrayList;
  * @see database.DBHelper
  */
 public class ToDoDatabaseManager implements ToDoDatabaseManagement {
+    /**
+     * Constructs a new ToDoDatabaseManager instance.
+     *
+     * <p>Creates a database manager that can perform CRUD operations
+     * and other database management functions for ToDo entities. The manager
+     * uses the {@link database.DBHelper} to establish database connections as needed.</p>
+     *
+     * <p>No initialization is required as connections are obtained on demand
+     * for each database operation.</p>
+     */
+    public ToDoDatabaseManager() {
+        // Default constructor
+    }
 
     /**
      * Persists a new ToDo item to the database.

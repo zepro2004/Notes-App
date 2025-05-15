@@ -41,7 +41,7 @@ import java.util.ArrayList;
  * @see Services
  * @see ToDo
  * @see ToDoDatabaseManagement
- * @see layout.panels.TodoPanel
+ * @see layout.panels.ToDoPanel
  */
 public class ToDoService implements Services<ToDo> {
     /**

@@ -11,13 +11,12 @@ import layout.MainLayout;
  * which involves initializing the necessary database components and then
  * launching the main user interface (UI) layout.
  * </p>
- * <p>
- * The application follows a simple startup procedure:
+ * <p> The application follows a simple startup procedure: </p>
  * <ol>
  * <li>Initialize the database using {@link database.DBInitializer}.</li>
  * <li>Create and display the main application window using {@link layout.MainLayout}.</li>
  * </ol>
- * Any exceptions thrown during this critical startup phase are propagated upwards,
+ * <p> Any exceptions thrown during this critical startup phase are propagated upwards,
  * potentially terminating the application if not handled by the JVM environment.
  * </p>
  *
@@ -37,8 +36,7 @@ public class App {
      * starts. It performs the essential initial setup steps required for the
      * application to run.
      * </p>
-     * <p>
-     * The sequence of operations is:
+     * <p> The sequence of operations is: </p>
      * <ol>
      * <li>Calls {@link database.DBInitializer#initializeDatabase()} to ensure the
      * database is ready for use. This might involve establishing connections,
@@ -47,7 +45,6 @@ public class App {
      * {@code MainLayout} is expected to build and display the primary
      * user interface of the application.</li>
      * </ol>
-     * </p>
      *
      * @param args Command-line arguments passed to the application at startup.
      * These arguments are not explicitly used in this basic setup
