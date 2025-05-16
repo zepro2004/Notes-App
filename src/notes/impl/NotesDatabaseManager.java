@@ -256,7 +256,7 @@ public class NotesDatabaseManager implements NotesDatabaseManagement {
      * @throws RuntimeException if a database error occurs during retrieval
      */
     public List<Notes> getSortedByTitle() {
-        return sortedGet("SELECT * FROM todos ORDER BY title");
+        return sortedGet("SELECT * FROM notes ORDER BY title");
     }
 
     /**

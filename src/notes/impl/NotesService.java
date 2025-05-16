@@ -254,7 +254,7 @@ public class NotesService implements Services<Notes> {
             return;
         }
         switch(options) {
-            case "title" -> notesList = repository.getSortedByTitle();
+            case "Title" -> notesList = repository.getSortedByTitle();
             default -> notesList = repository.refresh();
         }
     }
