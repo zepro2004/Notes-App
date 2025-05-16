@@ -10,7 +10,6 @@ out/
 target/
 build/
 bin/
-resources/
 javadoc/
 doc/
 
@@ -22,5 +21,5 @@ Thumbs.db
 .classpath
 .project
 *.class
-.*db
+.db
 App Layout.txt
