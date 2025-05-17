@@ -5,9 +5,43 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Database initialization utility class for creating the required database schema.
+ * <p>
+ * This class is responsible for ensuring that the database and necessary tables exist
+ * before the application attempts to use them. It creates the database if it doesn't
+ * exist and initializes the table structure for the Notes and ToDo application.
+ * <p>
+ * The class follows the utility pattern with a private constructor to prevent instantiation.
+ * It creates two essential tables:
+ * <ul>
+ *     <li>notes - Stores note entries with title and content</li>
+ *     <li>todos - Stores task entries with description, end date and completion status</li>
+ * </ul>
+ *
+ * @see DBHelper
+ * @see DatabaseConfig
+ */
 public class DBInitializer {
+    /**
+     * Private constructor to prevent instantiation of this utility class.
+     *
+     * @throws IllegalStateException if an attempt is made to instantiate this class
+     */
     private DBInitializer() { throw new IllegalStateException("Utility class"); }
 
+    /**
+     * Initializes the database by creating required tables if they don't exist.
+     * <p>
+     * This method ensures the database exists by calling {@link #createDatabaseIfNotExists()},
+     * then creates the following tables:
+     * <ul>
+     *     <li>notes - For storing note entries</li>
+     *     <li>todos - For storing task entries</li>
+     * </ul>
+     *
+     * @throws SQLException if any database access errors occur during initialization
+     */
     public static void initializeDatabase() throws SQLException {
         createDatabaseIfNotExists();
         String createNotesTable =  """
@@ -34,6 +68,19 @@ public class DBInitializer {
         }
     }
 
+    /**
+     * Creates the application database if it doesn't already exist.
+     * <p>
+     * This method connects to the database server using the configuration from
+     * {@link DatabaseConfig} and creates the 'notes-todo' database if it doesn't
+     * already exist.
+     *
+     * @throws SQLException if a database access error occurs or the database
+     *                      cannot be created for any reason
+     * @see DatabaseConfig#getUrl()
+     * @see DatabaseConfig#getUsername()
+     * @see DatabaseConfig#getPassword()
+     */
     private static void createDatabaseIfNotExists() throws SQLException {
         try {
             String url = DatabaseConfig.getUrl();
