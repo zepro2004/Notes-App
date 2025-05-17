@@ -2,7 +2,6 @@ package notes.interfaces;
 
 import notes.Notes;
 import common.interfaces.DatabaseManagement;
-import todo.ToDo;
 
 import java.util.List;
 
