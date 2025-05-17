@@ -1,6 +1,5 @@
 package layout.panels;
 
-import common.interfaces.DatabaseManagement;
 import common.interfaces.Services;
 
 import javax.swing.*;

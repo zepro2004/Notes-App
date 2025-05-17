@@ -22,4 +22,5 @@ Thumbs.db
 .project
 *.class
 *.db
+*.properties
 App Layout.txt
