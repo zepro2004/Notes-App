@@ -33,7 +33,7 @@ public class DatabaseConfig {
      * which will prevent the class from being used.
      */
     static {
-        try (InputStream in = Files.newInputStream(Paths.get("src/database/db.properties"))) {
+        try (InputStream in = Files.newInputStream(Paths.get("src/main/java/database/db.properties"))) {
             props.load(in);
         } catch (IOException e) {
             throw new ExceptionInInitializerError("Failed to load database properties: " + e.getMessage());

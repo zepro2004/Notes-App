@@ -10,6 +10,8 @@ import todo.interfaces.ToDoDatabaseManagement;
 import javax.swing.*;
 import layout.panels.*;
 
+import java.awt.*;
+
 /**
  * Manages the main application window layout for the todo List and notes main.App.
  * This class serves as the primary container and entry point for the user interface,
@@ -140,11 +142,30 @@ public class MainLayout extends JFrame{
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(800, 600);
 
+        Font appFont = new Font("Dialog", Font.PLAIN, 20);
+        setGlobalFont(appFont);
+
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Notes", new NotesPanel(notesService));
         tabbedPane.addTab("To Do List", new ToDoPanel(toDoManager));
 
         mainFrame.add(tabbedPane);
         mainFrame.setVisible(true);
+    }
+
+     public static void setGlobalFont(Font font) {
+        UIManager.put("Button.font", font);
+        UIManager.put("Label.font", font);
+        UIManager.put("TextField.font", font);
+        UIManager.put("TextArea.font", font);
+        UIManager.put("ComboBox.font", font);
+        UIManager.put("Menu.font", font);
+        UIManager.put("MenuItem.font", font);
+        UIManager.put("CheckBox.font", font);
+        UIManager.put("RadioButton.font", font);
+        UIManager.put("Table.font", font);
+        UIManager.put("Tree.font", font);
+        UIManager.put("TabbedPane.font", font);
+        // Add other components as needed
     }
 }
