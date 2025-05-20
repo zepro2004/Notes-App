@@ -283,6 +283,11 @@ public class ToDoPanel extends GeneralPanel<ToDo> {
 
     @Override
     protected String getItemTypeName() {
-        return "ToDo";
+        return "task";
+    }
+
+    @Override
+    protected String getItemName(ToDo toDo) {
+        return toDo.getTaskDescription();
     }
 }

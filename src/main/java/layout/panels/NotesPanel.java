@@ -305,4 +305,9 @@ public class NotesPanel extends GeneralPanel<Notes> {
     protected String getItemTypeName() {
         return "note";
     }
+
+    @Override
+    protected String getItemName(Notes note) {
+        return note.getTitle();
+    }
 }
