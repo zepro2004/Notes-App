@@ -124,7 +124,7 @@ public class ToDoPanel extends GeneralPanel<ToDo> {
      */
     private void onComplete() {
         int selected = itemList.getSelectedIndex();
-        if (selected > 0) {
+        if (selected >= 0) {
             ToDo toDo = toDoManager.getAll().get(selected);
             if (toDo.isCompleted()) {
                 showError("This task is already completed.");
