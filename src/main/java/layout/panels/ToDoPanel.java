@@ -173,6 +173,10 @@ public class ToDoPanel extends GeneralPanel<ToDo> {
         datePanel.add(new JLabel("End Date: "));
         datePanel.add(datePicker);
 
+        Font font = new Font("SansSerif", Font.PLAIN, 16);
+        datePicker.getJFormattedTextField().setFont(font);
+        datePicker.getComponent(1).setFont(font);
+
         JPanel sortPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         sortPanel.add(new JLabel("Sort: "));
         sortPanel.add(sortOptions);
@@ -275,5 +279,10 @@ public class ToDoPanel extends GeneralPanel<ToDo> {
     protected void clearInputFields() {
         taskDescriptionField.setText("");
         model.setValue(null);
+    }
+
+    @Override
+    protected String getItemTypeName() {
+        return "ToDo";
     }
 }

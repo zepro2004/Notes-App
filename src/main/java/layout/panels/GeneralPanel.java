@@ -147,9 +147,18 @@ public abstract class GeneralPanel<T> extends JPanel {
     private void onDelete() {
         int selected = itemList.getSelectedIndex();
         if (selected >= 0) {
-            T item = service.getAll().get(selected);
-            service.delete(item);
-            displayItems();
+            int confirm = JOptionPane.showConfirmDialog(
+                    this,
+                    "Are you sure you want to delete the selected " + getItemTypeName() + "?",
+                    "Confirm Delete",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
+            );
+            if(confirm == JOptionPane.YES_OPTION) {
+                T item = service.getAll().get(selected);
+                service.delete(item);
+                displayItems();
+            }
         } else {
             showError("Please select an item to delete.");
         }
@@ -263,4 +272,7 @@ public abstract class GeneralPanel<T> extends JPanel {
      * Called during panel construction before layout is established.
      */
     protected abstract void initializeComponents();
+
+    protected abstract String getItemTypeName();
+
 }

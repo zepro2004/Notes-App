@@ -112,10 +112,19 @@ public class NotesPanel extends GeneralPanel<Notes> {
      * No confirmation dialog is shown.</p>
      */
     private void onClear() {
-        notesManager.clear();
-        displayItems();
-        clearInputFields();
-        contentViewer.setText("");
+        int confirm = JOptionPane.showConfirmDialog(
+                this,
+                "Are you sure you want to permanently delete all notes?",
+                "Confirm Clear All",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE
+        );
+        if(confirm == JOptionPane.YES_OPTION) {
+            notesManager.clear();
+            displayItems();
+            clearInputFields();
+            contentViewer.setText("");
+        }
     }
 
     /**
@@ -290,5 +299,10 @@ public class NotesPanel extends GeneralPanel<Notes> {
     protected void populateInputFields(Notes note) {
         noteTitleField.setText(note.getTitle());
         noteContentArea.setText(note.getContent());
+    }
+
+    @Override
+    protected String getItemTypeName() {
+        return "note";
     }
 }
