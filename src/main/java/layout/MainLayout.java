@@ -138,11 +138,11 @@ public class MainLayout extends JFrame{
         /*
          * The main window frame for the application.
          */
-        JFrame mainFrame = new JFrame("todo List And notes main.App");
+        JFrame mainFrame = new JFrame("Notes App");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(800, 600);
 
-        Font appFont = new Font("Dialog", Font.PLAIN, 20);
+        Font appFont = new Font("SansSerif", Font.PLAIN, 16);
         setGlobalFont(appFont);
 
         JTabbedPane tabbedPane = new JTabbedPane();
@@ -166,6 +166,7 @@ public class MainLayout extends JFrame{
         UIManager.put("Table.font", font);
         UIManager.put("Tree.font", font);
         UIManager.put("TabbedPane.font", font);
+        UIManager.put("List.font", font);
         // Add other components as needed
     }
 }
