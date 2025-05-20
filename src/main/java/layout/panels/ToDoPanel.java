@@ -124,10 +124,14 @@ public class ToDoPanel extends GeneralPanel<ToDo> {
      */
     private void onComplete() {
         int selected = itemList.getSelectedIndex();
-        if (selected > 0) {
+        if (selected >= 0) {
             ToDo toDo = toDoManager.getAll().get(selected);
-            toDoManager.markTaskAsCompleted(toDo);
-            displayItems();
+            if (toDo.isCompleted()) {
+                showError("This task is already completed.");
+            } else {
+                toDoManager.markTaskAsCompleted(toDo);
+                displayItems();
+            }
         }  else {
             showError("Please select a task to mark as completed.");
         }
@@ -283,6 +287,11 @@ public class ToDoPanel extends GeneralPanel<ToDo> {
 
     @Override
     protected String getItemTypeName() {
-        return "ToDo";
+        return "task";
+    }
+
+    @Override
+    protected String getItemName(ToDo toDo) {
+        return toDo.getTaskDescription();
     }
 }
