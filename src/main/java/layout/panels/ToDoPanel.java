@@ -126,8 +126,12 @@ public class ToDoPanel extends GeneralPanel<ToDo> {
         int selected = itemList.getSelectedIndex();
         if (selected > 0) {
             ToDo toDo = toDoManager.getAll().get(selected);
-            toDoManager.markTaskAsCompleted(toDo);
-            displayItems();
+            if (toDo.isCompleted()) {
+                showError("This task is already completed.");
+            } else {
+                toDoManager.markTaskAsCompleted(toDo);
+                displayItems();
+            }
         }  else {
             showError("Please select a task to mark as completed.");
         }
