@@ -32,6 +32,14 @@
             <version>9.3.0</version>
         </dependency>
 
+        <!-- Mariadb dependency if using mariadb instead of MySQL -->
+
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.5.3</version>
+        </dependency>
+
         <!-- jdatepicker dependency for date picking in the app -->
 
         <dependency>
