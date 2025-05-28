@@ -1,9 +1,8 @@
 package database;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Properties;
 
 /**
@@ -33,8 +32,11 @@ public class DatabaseConfig {
      * which will prevent the class from being used.
      */
     static {
-        try (InputStream in = Files.newInputStream(Paths.get("src/main/java/database/db.properties"))) {
-            props.load(in);
+        try (InputStream in = DatabaseConfig.class.getClassLoader().getResourceAsStream("db.properties")){
+            if(in == null) {
+              throw new FileNotFoundException("db.properties not found in classpath");
+            }
+             props.load(in);
         } catch (IOException e) {
             throw new ExceptionInInitializerError("Failed to load database properties: " + e.getMessage());
         }
