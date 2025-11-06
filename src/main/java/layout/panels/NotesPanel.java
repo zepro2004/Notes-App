@@ -1,13 +1,11 @@
 package layout.panels;
 
-import notes.Notes;
-import notes.impl.NotesService;
 import config.*;
-
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import java.awt.*;
+import notes.Notes;
+import notes.impl.NotesService;
 
 /**
  * A Swing panel component providing a user interface for managing notes.
@@ -94,9 +92,7 @@ public class NotesPanel extends GeneralPanel<Notes> {
         buttonPanel.add(clearNoteButton);
 
         // Configure sorting options
-        sortOptions = new JComboBox<>(new String[] {
-                "Title"
-        });
+        sortOptions = new JComboBox<>(new String[] { "Title" });
         sortOptions.addActionListener(e -> onSort());
 
         // Set up event listeners
@@ -113,13 +109,13 @@ public class NotesPanel extends GeneralPanel<Notes> {
      */
     private void onClear() {
         int confirm = JOptionPane.showConfirmDialog(
-                this,
-                "Are you sure you want to permanently delete all notes?",
-                "Confirm Clear All",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE
+            this,
+            "Are you sure you want to permanently delete all notes?",
+            "Confirm Clear All",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE
         );
-        if(confirm == JOptionPane.YES_OPTION) {
+        if (confirm == JOptionPane.YES_OPTION) {
             notesManager.clear();
             displayItems();
             clearInputFields();
@@ -188,7 +184,9 @@ public class NotesPanel extends GeneralPanel<Notes> {
         JPanel sortPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         sortPanel.add(new JLabel("Sort: "));
         sortPanel.add(sortOptions);
-        sortPanel.setPreferredSize(new Dimension(450, (int)sortPanel.getPreferredSize().getHeight()));
+        sortPanel.setPreferredSize(
+            new Dimension(450, (int) sortPanel.getPreferredSize().getHeight())
+        );
 
         inputPanel.add(titlePanel, BorderLayout.NORTH);
         inputPanel.add(contentPanel, BorderLayout.CENTER);

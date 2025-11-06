@@ -1,11 +1,10 @@
 package notes.impl;
 
-import notes.Notes;
 import common.interfaces.Services;
-import notes.interfaces.NotesDatabaseManagement;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import notes.Notes;
+import notes.interfaces.NotesDatabaseManagement;
 
 /**
  * Service layer implementation for managing Notes entities.
@@ -44,6 +43,7 @@ import java.util.List;
  * @see layout.panels.NotesPanel
  */
 public class NotesService implements Services<Notes> {
+
     /**
      * The data access object for notes persistence.
      * Handles all direct database interactions, allowing this service to focus
@@ -227,7 +227,11 @@ public class NotesService implements Services<Notes> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Notes note : notesList) {
-            sb.append(note.getTitle()).append(" (").append(note.getContent()).append(")\n");
+            sb
+                .append(note.getTitle())
+                .append(" (")
+                .append(note.getContent())
+                .append(")\n");
         }
         return sb.toString();
     }
@@ -249,11 +253,11 @@ public class NotesService implements Services<Notes> {
      * @param options The sort option to apply ("title" or null for default order)
      */
     public void sort(String options) {
-        if(options == null) {
+        if (options == null) {
             notesList = repository.refresh();
             return;
         }
-        switch(options) {
+        switch (options) {
             case "Title" -> notesList = repository.getSortedByTitle();
             default -> notesList = repository.refresh();
         }
